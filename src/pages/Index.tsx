@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import Loading from "@/components/Loading";
 import { Toaster } from "@/components/ui/toaster";
+import BackToTop from "@/components/BackToTop";
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -32,11 +33,11 @@ const Index = () => {
       <Navbar />
       <Hero />
       <About />
-      <TechMarquee />
       <Projects />
       <Testimonials />
       <Contact />
       <Footer />
+      <BackToTop />
     </div>
   );
 };

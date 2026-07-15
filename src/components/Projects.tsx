@@ -15,7 +15,7 @@ const Projects = () => {
       tech: ["React", "Redux", "Tailwind CSS", "Clerk", "Stripe", "REST Api"],
       github: "https://github.com/kartikdhomne/E-Commerce-Cart-React-Redux",
       demo: "https://easy-shop-redux.netlify.app",
-      gradient: "from-blue-600 to-purple-600",
+      accent: "#14B8A6",
     },
     {
       title: "Multi User Blog App",
@@ -26,7 +26,7 @@ const Projects = () => {
       tech: ["React", "Next Js", "Kinde Auth", "TailwindCSS", "Javscript", "React Hook Form"],
       github: "https://github.com/kartikdhomne/NextJs-Blog-APP",
       demo: "https://new-next-js-blog-app.vercel.app/",
-      gradient: "from-green-600 to-teal-600",
+      accent: "#F59E0B",
     },
     {
       title: "Sport Shoppie Website",
@@ -37,7 +37,7 @@ const Projects = () => {
       tech: ["HTML", "CSS", "JAVASCRIPT"],
       github: "https://github.com/kartikdhomne/E-commerce-site-HTML",
       demo: "https://sport-shoppie.netlify.app/",
-      gradient: "from-purple-600 to-pink-600",
+      accent: "#38BDF8",
     },
     {
       title: "Weather Dashboard",
@@ -48,7 +48,7 @@ const Projects = () => {
       tech: ["HTML", "Javacript", "CSS3"],
       github: "https://github.com/kartikdhomne/Code-Editor-Project",
       demo: "https://simple-online-code-editor.netlify.app/",
-      gradient: "from-orange-600 to-red-600",
+      accent: "#FB7185",
     },
   ];
 
@@ -76,33 +76,69 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="py-20 px-4 bg-slate-900/30 relative overflow-hidden"
+      className="py-20 max-[991px]:py-14 max-[767px]:py-10 px-4 max-[767px]:px-3 relative overflow-hidden"
+      style={{
+        background:
+          "radial-gradient(ellipse at bottom, #0B1220 0%, #070B14 55%, #05070D 100%)",
+      }}
       ref={ref}
     >
-      {/* Background decoration */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-80 h-80 bg-pink-500/5 rounded-full blur-3xl" />
-      </div>
+      {/* Graph-paper texture, matches About */}
+      <div
+        className="absolute inset-0 opacity-[0.05] pointer-events-none"
+        style={{
+          backgroundImage:
+            "linear-gradient(#14B8A6 1px, transparent 1px), linear-gradient(90deg, #14B8A6 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
+        }}
+      />
+      {/* Ambient glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 max-[767px]:w-56 h-96 max-[767px]:h-56 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-teal-500/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-16 max-[991px]:mb-12 max-[767px]:mb-8"
           variants={containerVariants}
           initial="hidden"
           animate={isVisible ? "visible" : "hidden"}
         >
-          <motion.h2
-            className="text-4xl md:text-5xl font-bold text-white mb-4"
+          <motion.span
+            className="inline-block font-mono text-xs tracking-[0.3em] max-[767px]:tracking-[0.2em] text-teal-400/80 mb-4 uppercase"
             variants={itemVariants}
           >
-            My{" "}
-            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Projects
-            </span>
+            // Work
+          </motion.span>
+          <motion.h2
+            className="text-4xl max-[991px]:text-[2.25rem] max-[767px]:text-3xl font-bold text-white mb-4"
+            variants={itemVariants}
+          >
+            My <span className="text-teal-400">Projects</span>
           </motion.h2>
+
+          {/* EKG / pulse divider — signature element, matches About */}
+          <motion.svg
+            viewBox="0 0 400 40"
+            className="w-64 max-[767px]:w-48 h-8 mx-auto mb-6 max-[767px]:mb-4"
+            initial={{ opacity: 0 }}
+            animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ delay: 0.3 }}
+          >
+            <motion.path
+              d="M0 20 L130 20 L145 5 L160 35 L175 20 L400 20"
+              fill="none"
+              stroke="#14B8A6"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              initial={{ pathLength: 0 }}
+              animate={isVisible ? { pathLength: 1 } : { pathLength: 0 }}
+              transition={{ duration: 1.4, ease: "easeInOut", delay: 0.4 }}
+            />
+          </motion.svg>
+
           <motion.p
-            className="text-xl text-slate-400 max-w-3xl mx-auto"
+            className="text-xl max-[767px]:text-base text-slate-400 max-w-3xl mx-auto px-2 max-[767px]:px-0"
             variants={itemVariants}
           >
             Here are some of my recent projects that showcase my skills and
@@ -111,45 +147,51 @@ const Projects = () => {
         </motion.div>
 
         <motion.div
-          className="grid md:grid-cols-2 gap-8"
+          className="grid md:grid-cols-2 gap-8 max-[767px]:gap-5"
           variants={containerVariants}
           initial="hidden"
           animate={isVisible ? "visible" : "hidden"}
         >
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <motion.div
               key={project.title}
-              className="group relative bg-slate-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-slate-700/50"
+              className="group relative bg-[#0F1626] rounded-lg overflow-hidden border border-slate-800/80"
               variants={itemVariants}
-              whileHover={{
-                y: -10,
-                boxShadow: "0 25px 50px rgba(0,0,0,0.3)",
-              }}
+              whileHover={{ y: -6 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
+              {/* Corner brackets — instrument-panel motif, matches About */}
+              <div
+                className="absolute top-0 left-0 w-3 h-3 border-t border-l opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+                style={{ borderColor: project.accent }}
+              />
+              <div
+                className="absolute bottom-0 right-0 w-3 h-3 border-b border-r opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+                style={{ borderColor: project.accent }}
+              />
+
               {/* Image container with overlay */}
               <div className="relative overflow-hidden">
                 <motion.img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-48 object-cover"
-                  whileHover={{ scale: 1.1 }}
+                  className="w-full h-48 max-[767px]:h-40 object-cover"
+                  whileHover={{ scale: 1.08 }}
                   transition={{ duration: 0.6 }}
                 />
-                <motion.div
-                  className={`absolute inset-0 bg-gradient-to-t ${project.gradient} opacity-0 group-hover:opacity-80`}
-                  transition={{ duration: 0.3 }}
+                <div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-90 transition-opacity duration-300"
+                  style={{
+                    background: `linear-gradient(to top, ${project.accent}CC, transparent)`,
+                  }}
                 />
-                <motion.div
-                  className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100"
-                  transition={{ duration: 0.3 }}
-                >
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="flex space-x-4">
                     <motion.a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-3 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors"
+                      className="p-3 bg-black/30 backdrop-blur-sm rounded-md hover:bg-black/50 transition-colors"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                     >
@@ -159,40 +201,37 @@ const Projects = () => {
                       href={project.demo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-3 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors"
+                      className="p-3 bg-black/30 backdrop-blur-sm rounded-md hover:bg-black/50 transition-colors"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                     >
                       <ExternalLink className="w-5 h-5 text-white" />
                     </motion.a>
                   </div>
-                </motion.div>
+                </div>
               </div>
 
-              <div className="p-6">
-                <motion.h3 className="text-xl font-semibold text-white mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-purple-400 group-hover:to-pink-400 transition-all duration-300">
+              <div className="p-6 max-[767px]:p-4">
+                <h3
+                  className="text-xl max-[767px]:text-lg font-semibold text-white mb-3 max-[767px]:mb-2 transition-colors duration-300"
+                  style={{ color: undefined }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = project.accent)}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "")}
+                >
                   {project.title}
-                </motion.h3>
-                <p className="text-slate-400 mb-4 leading-relaxed text-sm">
+                </h3>
+                <p className="text-slate-400 mb-4 max-[767px]:mb-3 leading-relaxed text-sm">
                   {project.description}
                 </p>
 
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.tech.map((tech, techIndex) => (
-                    <motion.span
+                <div className="flex flex-wrap gap-2 mb-6 max-[767px]:mb-4">
+                  {project.tech.map((tech) => (
+                    <span
                       key={tech}
-                      className="px-3 py-1 bg-slate-700/50 text-slate-300 text-xs rounded-full border border-slate-600/50 backdrop-blur-sm"
-                      whileHover={{
-                        scale: 1.05,
-                        backgroundColor: "rgba(139, 92, 246, 0.2)",
-                        borderColor: "rgba(139, 92, 246, 0.5)",
-                      }}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: index * 0.1 + techIndex * 0.05 }}
+                      className="px-3 py-1 bg-slate-800/60 text-slate-300 text-xs font-mono rounded border border-slate-700/60"
                     >
                       {tech}
-                    </motion.span>
+                    </span>
                   ))}
                 </div>
 
@@ -201,9 +240,9 @@ const Projects = () => {
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center space-x-2 px-4 py-2 bg-slate-700/50 hover:bg-slate-600/50 text-slate-300 hover:text-white rounded-lg transition-all duration-200 backdrop-blur-sm border border-slate-600/50"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    className="flex items-center space-x-2 px-4 py-2 bg-slate-800/60 hover:bg-slate-700/60 text-slate-300 hover:text-white rounded-md transition-all duration-200 border border-slate-700/60"
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
                   >
                     <Github className="w-4 h-4" />
                     <span className="text-sm">Code</span>
@@ -212,9 +251,14 @@ const Projects = () => {
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`flex items-center space-x-2 px-4 py-2 bg-gradient-to-r ${project.gradient} text-white rounded-lg transition-all duration-200`}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    className="flex items-center space-x-2 px-4 py-2 rounded-md transition-all duration-200 font-medium"
+                    style={{
+                      backgroundColor: `${project.accent}1A`,
+                      color: project.accent,
+                      border: `1px solid ${project.accent}40`,
+                    }}
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
                   >
                     <ExternalLink className="w-4 h-4" />
                     <span className="text-sm">Demo</span>
