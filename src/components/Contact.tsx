@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
   const [ref, isVisible] = useIntersectionObserver(0.2);
