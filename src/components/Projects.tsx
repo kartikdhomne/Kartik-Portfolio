@@ -40,9 +40,9 @@ const Projects = () => {
       accent: "#38BDF8",
     },
     {
-      title: "Weather Dashboard",
+      title: "Code Editor",
       description:
-        "A beautiful weather dashboard with location-based forecasts, interactive maps, and detailed weather analytics with stunning visualizations.",
+        "A beautiful code editor built with HTML, CSS, and JavaScript that lets users write HTML, CSS, and JavaScript code with an instant live preview in the browser.",
       image:
         "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=600&fit=crop",
       tech: ["HTML", "Javacript", "CSS3"],
